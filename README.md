@@ -15,7 +15,7 @@ allprojects {
 #### Step 2. Add the dependency
 ```gradle
 dependencies {
-	implementation 'com.github.lumyuan:ly-file:v0.0.1'
+	implementation 'com.github.lumyuan:ly-file:[![](https://jitpack.io/v/lumyuan/ly-file.svg)](https://jitpack.io/#lumyuan/ly-file)'
 }
 ```
 
@@ -89,4 +89,3 @@ FileSort.byLength(File[] files, @OrderBy int orderBy)
 
 # Last
 Welcome star and push!
-[![](https://jitpack.io/v/lumyuan/ly-file.svg)](https://jitpack.io/#lumyuan/ly-file)
