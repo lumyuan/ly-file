@@ -15,6 +15,7 @@ allprojects {
 #### Step 2. Add the dependency[![](https://jitpack.io/v/lumyuan/ly-file.svg)](https://jitpack.io/#lumyuan/ly-file)
 ```gradle
 dependencies {
+	implementation 'androidx.documentfile:documentfile:1.0.1'
 	implementation 'com.github.lumyuan:ly-file:v0.0.1'
 }
 ```
