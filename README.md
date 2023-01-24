@@ -12,10 +12,10 @@ allprojects {
 	}
 }
 ```
-#### Step 2. Add the dependency
+#### Step 2. Add the dependency[![](https://jitpack.io/v/lumyuan/ly-file.svg)](https://jitpack.io/#lumyuan/ly-file)
 ```gradle
 dependencies {
-	implementation 'com.github.lumyuan:ly-file:[![](https://jitpack.io/v/lumyuan/ly-file.svg)](https://jitpack.io/#lumyuan/ly-file)'
+	implementation 'com.github.lumyuan:ly-file:v0.0.1'
 }
 ```
 
