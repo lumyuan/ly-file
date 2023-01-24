@@ -67,7 +67,7 @@ file.getName();
 String[] list = file.list();
 File[] listFile = file.listFile();
 
-more and more...
+more...
 
 //open I/O stream
 //inputstream
