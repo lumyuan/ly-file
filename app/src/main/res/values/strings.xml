@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Android Explorer</string>
+    <string name="permission_tip">授权提示</string>
+    <string name="check_esp">本软件需要授予【外部存储权限】才能正常工作，点击授权</string>
+    <string name="check_msp">本软件需要授予【所有文件访问权限】才能正常工作，点击授权</string>
+    <string name="allow">同意</string>
+    <string name="cancel">取消</string>
+    <string name="check_permission">检查权限…</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="permission_fail">权限检查失败，点击重试</string>
+    <string name="welcome">Welcome to</string>
+    <string name="start">开始使用</string>
+    <string name="check_permission_tip">◉ 在使用软件前，我们需要以下权限</string>
+    <string name="permission_external_storage">外部存储权限</string>
+    <string name="permission_external_storage_tips">从Android6.0版本开始，App扫描您的外置存储空间需要授予【外部存储权限】</string>
+    <string name="permission_manage_external_storage">所有文件访问权限</string>
+    <string name="permission_manage_external_storage_tips">受沙盒存储的影响，App扫描您的外部存储空间需要授予【所有文件访问权限】</string>
+    <string name="please_get_es">请先授予App【外部存储权限】</string>
+    <string name="please_get_ms">请先授予App【所有文件访问权限】</string>
+    <string name="path_tab_tag">PATH TAB VIEW</string>
+
+    <!--System value-->
+    <string name="date_format">yyyy年MM月dd日 HH时mm分ss秒</string>
+    <string name="count">项</string>
+</resources>

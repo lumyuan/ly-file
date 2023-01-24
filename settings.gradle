@@ -1,0 +1,28 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+
+        maven{ url 'https://maven.aliyun.com/repository/public/'}
+        maven{ url 'https://maven.aliyun.com/repository/google/'}
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+
+        maven{ url 'https://maven.aliyun.com/repository/public/'}
+        maven{ url 'https://maven.aliyun.com/repository/google/'}
+    }
+}
+rootProject.name = "Android Explorer"
+include ':app'
+include ':io'
