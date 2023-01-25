@@ -48,7 +48,7 @@ String targetPath = "/storage/emulated/0/Android/data/xxxxx";
 String docId = Permissions.getDocId(targetPath);
 String packageName = DocumentUtil.getPackageName(targetPath);
 if (DocumentUtil.isPreviewDir(targetPath) && !Permissions.hasPrevDir(docId, packageName)){
-	Permissions.getPrevDir(new Activity(), DocumentUtil.REQ_SAF_R_DATA, docId);
+	Permissions.getPrevDir(activity, DocumentUtil.REQ_SAF_R_DATA, docId);
 }
 
 @Override
