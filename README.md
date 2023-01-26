@@ -52,7 +52,7 @@ String targetPath = "/storage/emulated/0/Android/data/xxxxx";
 //	Permissions.getPrevDir(activity, DocumentUtil.REQ_SAF_R_DATA, docId);
 //}
 
-//After version 0.0.3.
+//Recommended writing after version 0.0.3:
 if(!Permissions.hasPrevDir(targetPath)){
 	Permissions.getPrevDir(activity, DocumentUtil.REQ_SAF_R_DATA, targetPath);
 }
