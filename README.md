@@ -46,10 +46,15 @@ if (!Permissions.hasCallAllFile()){
 if sdk >= 30 && sdk <= 33 AND target path belongs to a part of '/Android/data' or '/Android/obb'
 ```java
 String targetPath = "/storage/emulated/0/Android/data/xxxxx";
-String docId = Permissions.getDocId(targetPath);
-String packageName = DocumentUtil.getPackageName(targetPath);
-if (DocumentUtil.isPreviewDir(targetPath) && !Permissions.hasPrevDir(docId, packageName)){
-	Permissions.getPrevDir(activity, DocumentUtil.REQ_SAF_R_DATA, docId);
+//String docId = Permissions.getDocId(targetPath);
+//String packageName = DocumentUtil.getPackageName(targetPath);
+//if (DocumentUtil.isPreviewDir(targetPath) && !Permissions.hasPrevDir(docId, packageName)){
+//	Permissions.getPrevDir(activity, DocumentUtil.REQ_SAF_R_DATA, docId);
+//}
+
+//After version 0.0.3.
+if(Permissions.hasPrevDir(targetPath)){
+	Permissions.getPrevDir(activity, DocumentUtil.REQ_SAF_R_DATA, targetPath);
 }
 
 @Override
