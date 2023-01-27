@@ -75,7 +75,7 @@ String[] list = file.list();
 File[] listFile = file.listFile();
 
 ```
-### Watch more feature at <a href="#">FileApi</a> interface.
+### Watch more feature at <a href="https://github.com/lumyuan/ly-file/blob/main/io/src/main/java/ly/android/io/base/FileApi.java">FileApi</a> interface.
 
 ```java
 //open I/O stream
