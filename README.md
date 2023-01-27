@@ -74,8 +74,10 @@ file.getName();
 String[] list = file.list();
 File[] listFile = file.listFile();
 
-more...
+```
+### Watch more feature at FileApi interface.
 
+```java
 //open I/O stream
 //inputstream
 try {
@@ -85,6 +87,11 @@ try {
 try {
 	OutputStream outputStream = IOUtils.openOutputStream(path);
 }catch(IOException e){}
+
+//copy file
+IOUtils.copyFile(String oldPath, String newPath)
+//cut file
+IOUtils.cutFile(String oldPath, String newPath)
 ```
 4. some api
 ```java
