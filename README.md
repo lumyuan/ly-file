@@ -75,7 +75,7 @@ String[] list = file.list();
 File[] listFile = file.listFile();
 
 ```
-Watch more feature at <font color=red>FileApi</font> interface.
+### Watch more feature at <a href="#">FileApi</a> interface.
 
 ```java
 //open I/O stream
