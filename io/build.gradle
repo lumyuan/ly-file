@@ -1,6 +1,5 @@
 plugins {
     id 'com.android.library'
-    id 'maven-publish'
 }
 
 android {
@@ -40,21 +39,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-}
-
-afterEvaluate {
-    // 官方建议使用上传方法
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
-                from components.release
-                groupId = 'com.github.lumyuan'
-                artifactId = 'ly-file'
-                version = 'v0.0.5'
-            }
-        }
-    }
 }
 
 task makeJar(type:Copy){
