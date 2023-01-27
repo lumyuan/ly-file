@@ -4,6 +4,7 @@ import android.net.Uri;
 
 import androidx.documentfile.provider.DocumentFile;
 
+import java.io.File;
 import java.io.IOException;
 
 import ly.android.io.FileApplication;
@@ -15,9 +16,12 @@ public final class SimpleDocumentFile implements FileApi {
     private final DocumentFile file;
     private final String path;
 
+    private final File javaFile;
+
     public SimpleDocumentFile(String path){
         this.file = DocumentUtil.getTreeDocumentFile(path, false);
         this.path = path;
+        javaFile = new File(path);
     }
 
     @Override
@@ -27,21 +31,22 @@ public final class SimpleDocumentFile implements FileApi {
 
     @Override
     public String getName() {
-        return this.file != null ? this.file.getName() : null;
+        return javaFile.getName();
     }
 
     @Override
     public String getParent() {
-        if (this.file != null){
-            final DocumentFile parentFile = this.file.getParentFile();
-            if (parentFile != null){
-                return UriUtil.uri2path(parentFile.getUri().toString());
-            }else {
-                return null;
-            }
-        }else {
-            return null;
-        }
+//        if (this.file != null){
+//            final DocumentFile parentFile = this.file.getParentFile();
+//            if (parentFile != null){
+//                return UriUtil.uri2path(parentFile.getUri().toString());
+//            }else {
+//                return null;
+//            }
+//        }else {
+//            return null;
+//        }
+        return javaFile.getParent();
     }
 
     @Override
@@ -49,7 +54,7 @@ public final class SimpleDocumentFile implements FileApi {
         if (this.file != null){
             return UriUtil.uri2path(this.file.getUri().toString());
         }else {
-            return this.path;
+            return javaFile.getAbsolutePath();
         }
     }
 
@@ -85,18 +90,14 @@ public final class SimpleDocumentFile implements FileApi {
 
     @Override
     public boolean createNewFile() throws IOException {
-        if (this.file != null){
-            final DocumentFile parentFile = this.file.getParentFile();
-            if (parentFile != null){
-                final String name = this.file.getName();
-                if (name != null){
-                    final DocumentFile file = parentFile.createFile("*/*", name);
-                    return file != null && file.exists();
-                }else {
-                    throw new IOException("Path " + this.path + " is closed fail.");
-                }
-            }else {
-                throw new IOException("Path " + this.path + " is closed fail.");
+        DocumentFile treeDocumentFile = DocumentUtil.getTreeDocumentFile(javaFile.getParent(), true);
+        if (treeDocumentFile != null){
+            final String name = this.javaFile.getName();
+            try {
+                final DocumentFile file = treeDocumentFile.createFile("*/*", name);
+                return file != null && file.exists();
+            }catch (Exception e){
+                throw new IOException(e);
             }
         }else {
             throw new IOException("Path " + this.path + " is closed fail.");
@@ -135,7 +136,7 @@ public final class SimpleDocumentFile implements FileApi {
             final String rootPath = DocumentUtil.DOCUMENT_ROOT + id +  "/" + packageName;
             final Uri rootUri = DocumentUtil.getRootUri(UriUtil.path2UriString(rootPath));
             if (rootUri != null){
-                DocumentFile documentFile = DocumentFile.fromTreeUri(FileApplication.application, rootUri);
+                DocumentFile documentFile = DocumentFile.fromTreeUri(FileApplication.getApplication(), rootUri);
                 if (documentFile != null){
                     final String pathContent = DocumentUtil.getPathContent(this.path, id +  "/" + packageName);
                     final String[] contentItem = pathContent.split("/");
@@ -160,7 +161,7 @@ public final class SimpleDocumentFile implements FileApi {
             final String rootPath = DocumentUtil.DOCUMENT_ROOT + id;
             final Uri rootUri = DocumentUtil.getRootUri(UriUtil.path2UriString(rootPath));
             if (rootUri != null){
-                DocumentFile documentFile = DocumentFile.fromTreeUri(FileApplication.application, rootUri);
+                DocumentFile documentFile = DocumentFile.fromTreeUri(FileApplication.getApplication(), rootUri);
                 if (documentFile != null){
                     final String pathContent = DocumentUtil.getPathContent(this.path, id);
                     final String[] contentItem = pathContent.split("/");

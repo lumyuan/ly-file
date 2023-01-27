@@ -88,9 +88,9 @@ public class DocumentUtil {
 
     public static DocumentFile getRootDocumentFile(String absolutePath, String packageName){
         if (isData(absolutePath)) {
-            return DocumentFile.fromTreeUri(FileApplication.application, getFolderUri(DOCID_ANDROID_DATA, packageName, true));
+            return DocumentFile.fromTreeUri(FileApplication.getApplication(), getFolderUri(DOCID_ANDROID_DATA, packageName, true));
         }else {
-            return DocumentFile.fromTreeUri(FileApplication.application, getFolderUri(DOCID_ANDROID_OBB, packageName, true));
+            return DocumentFile.fromTreeUri(FileApplication.getApplication(), getFolderUri(DOCID_ANDROID_OBB, packageName, true));
         }
     }
 
@@ -133,7 +133,7 @@ public class DocumentUtil {
     }
 
     public static boolean isInPersistedUriPermissions(Uri uri){
-        List<UriPermission> persistedUriPermissions = FileApplication.application.getContentResolver().getPersistedUriPermissions();
+        List<UriPermission> persistedUriPermissions = FileApplication.getApplication().getContentResolver().getPersistedUriPermissions();
         for (UriPermission persistedUriPermission : persistedUriPermissions) {
             if (persistedUriPermission.getUri().toString().equals(uri.toString()) && (persistedUriPermission.isReadPermission() || persistedUriPermission.isWritePermission())){
                 return true;
@@ -143,7 +143,7 @@ public class DocumentUtil {
     }
 
     public static Uri getRootUri(Uri uri){
-        List<UriPermission> persistedUriPermissions = FileApplication.application.getContentResolver().getPersistedUriPermissions();
+        List<UriPermission> persistedUriPermissions = FileApplication.getApplication().getContentResolver().getPersistedUriPermissions();
         for (UriPermission persistedUriPermission : persistedUriPermissions) {
             if (persistedUriPermission.getUri().toString().equals(uri.toString()) && (persistedUriPermission.isReadPermission() || persistedUriPermission.isWritePermission())){
                 return persistedUriPermission.getUri();
@@ -179,7 +179,7 @@ public class DocumentUtil {
                 | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
                 | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
                 | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
-        intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, Objects.requireNonNull(DocumentFile.fromTreeUri(FileApplication.application, uri)).getUri());
+        intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, Objects.requireNonNull(DocumentFile.fromTreeUri(FileApplication.getApplication(), uri)).getUri());
         return intent;
     }
 

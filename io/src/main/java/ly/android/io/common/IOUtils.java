@@ -27,7 +27,7 @@ public class IOUtils {
             if (treeDocumentFile == null){
                 throw new IOException("No such file or directory.");
             }
-            return FileApplication.application.getContentResolver().openInputStream(treeDocumentFile.getUri());
+            return FileApplication.getApplication().getContentResolver().openInputStream(treeDocumentFile.getUri());
         }else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 return Files.newInputStream(Paths.get(path));
@@ -43,7 +43,7 @@ public class IOUtils {
             if (treeDocumentFile == null){
                 throw new IOException("No such file or directory.");
             }
-            return FileApplication.application.getContentResolver().openOutputStream(treeDocumentFile.getUri(), "rwt");
+            return FileApplication.getApplication().getContentResolver().openOutputStream(treeDocumentFile.getUri(), "rwt");
         }else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 return Files.newOutputStream(Paths.get(path));
@@ -81,6 +81,10 @@ public class IOUtils {
     }
 
     public static void writeBytes(String path, byte[] data) throws IOException {
+        File file = new File(path);
+        if (!file.exists()){
+            file.createNewFile();
+        }
         writeBytes(openOutputStream(path), data);
     }
 
@@ -88,6 +92,7 @@ public class IOUtils {
         final byte[] bytes = readBytes(oldPath);
         writeBytes(newPath, bytes);
         if (delete){
+
             new File(oldPath).delete();
         }
     }
