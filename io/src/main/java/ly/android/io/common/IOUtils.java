@@ -82,7 +82,11 @@ public class IOUtils {
 
     public static void writeBytes(String path, byte[] data) throws IOException {
         File file = new File(path);
-        if (!file.exists()){
+        File parent = new File(file.getParent());
+        if (!parent.exists()) {
+            parent.mkdirs();
+        }
+        if (!file.exists()) {
             file.createNewFile();
         }
         writeBytes(openOutputStream(path), data);
@@ -92,7 +96,6 @@ public class IOUtils {
         final byte[] bytes = readBytes(oldPath);
         writeBytes(newPath, bytes);
         if (delete){
-
             new File(oldPath).delete();
         }
     }
