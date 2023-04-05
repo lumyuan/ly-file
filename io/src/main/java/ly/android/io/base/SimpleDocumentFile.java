@@ -143,7 +143,7 @@ public final class SimpleDocumentFile implements FileApi {
                     for (String item : contentItem) {
                         final DocumentFile findFile = documentFile.findFile(item);
                         if (findFile == null) {
-                            final DocumentFile createFile = documentFile.createFile("*/*", item);
+                            final DocumentFile createFile = documentFile.createDirectory(item);
                             if (createFile == null) {
                                 return false;
                             }
@@ -168,7 +168,7 @@ public final class SimpleDocumentFile implements FileApi {
                     for (String item : contentItem) {
                         final DocumentFile findFile = documentFile.findFile(item);
                         if (findFile == null) {
-                            final DocumentFile createFile = documentFile.createFile("*/*", item);
+                            final DocumentFile createFile = documentFile.createDirectory(item);
                             if (createFile == null) {
                                 return false;
                             }
