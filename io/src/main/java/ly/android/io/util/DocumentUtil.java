@@ -145,7 +145,7 @@ public class DocumentUtil {
     public static Uri getRootUri(Uri uri){
         List<UriPermission> persistedUriPermissions = FileApplication.getApplication().getContentResolver().getPersistedUriPermissions();
         for (UriPermission persistedUriPermission : persistedUriPermissions) {
-            if (persistedUriPermission.getUri().toString().equals(uri.toString()) && (persistedUriPermission.isReadPermission() || persistedUriPermission.isWritePermission())){
+            if (UriUtil.uri2path(persistedUriPermission.getUri().toString()).equals(UriUtil.uri2path(uri.toString())) && (persistedUriPermission.isReadPermission() || persistedUriPermission.isWritePermission())){
                 return persistedUriPermission.getUri();
             }
         }
