@@ -26,7 +26,14 @@ class TestActivity : AppCompatActivity() {
 
         binding.mkdirs.setOnClickListener {
             val file = File(path)
-            println(file.mkdirs())
+            
+            val parent = File(file.parent)
+            if (!parent.exists()) {
+                println(parent.mkdirs())
+            }
+            if (!file.exists()) {
+                file.createNewFile()
+            }
         }
     }
 
