@@ -14,8 +14,7 @@ import ly.android.io.util.DocumentUtil
 class TestActivity : AppCompatActivity() {
 
     private val binding by bind(LayoutTestBinding::inflate)
-    private val path =
-        Environment.getExternalStorageDirectory().absolutePath + "/Android/data/test/a/b/c/d/e.txt"
+    private val path = "/storage/emulated/0/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Paks/avatarpaks"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +25,10 @@ class TestActivity : AppCompatActivity() {
 
         binding.mkdirs.setOnClickListener {
             val file = File(path)
-            println(file.mkdirs())
+            val listFile = file.listFile()
+            listFile.onEach {
+                println(it.name)
+            }
         }
     }
 
