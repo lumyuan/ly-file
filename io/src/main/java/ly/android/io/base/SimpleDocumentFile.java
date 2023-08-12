@@ -6,7 +6,6 @@ import androidx.documentfile.provider.DocumentFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 
 import ly.android.io.FileApplication;
 import ly.android.io.util.DocumentUtil;
@@ -14,20 +13,27 @@ import ly.android.io.util.UriUtil;
 
 public final class SimpleDocumentFile implements FileApi {
 
-    private final DocumentFile file;
+    private DocumentFile file;
     private final String path;
 
     private final File javaFile;
 
     public SimpleDocumentFile(String path){
-        this.file = DocumentUtil.getTreeDocumentFile(path, false);
         this.path = path;
         javaFile = new File(path);
     }
 
+    private DocumentFile getFile() {
+        if (this.file == null) {
+            this.file = DocumentUtil.getTreeDocumentFile(path, false);
+        }
+        return this.file;
+    }
+
     @Override
     public boolean exists() {
-        return this.file != null && this.file.exists();
+        DocumentFile f = getFile();
+        return f != null && f.exists();
     }
 
     @Override
@@ -38,7 +44,7 @@ public final class SimpleDocumentFile implements FileApi {
     @Override
     public String getParent() {
 //        if (this.file != null){
-//            final DocumentFile parentFile = this.file.getParentFile();
+//            final DocumentFile parentFile = getFile().getParentFile();
 //            if (parentFile != null){
 //                return UriUtil.uri2path(parentFile.getUri().toString());
 //            }else {
@@ -52,41 +58,43 @@ public final class SimpleDocumentFile implements FileApi {
 
     @Override
     public String getPath() {
-        if (this.file != null){
-            return UriUtil.uri2path(this.file.getUri().toString());
-        }else {
-            return javaFile.getAbsolutePath();
-        }
+        return this.path;
     }
 
     @Override
     public boolean canRead() {
-        return this.file != null && this.file.canRead();
+        DocumentFile f = getFile();
+        return f != null && f.canRead();
     }
 
     @Override
     public boolean canWrite() {
-        return this.file != null && this.file.canWrite();
+        DocumentFile f = getFile();
+        return f != null && f.canWrite();
     }
 
     @Override
     public boolean isDirectory() {
-        return this.file != null && this.file.isDirectory();
+        DocumentFile f = getFile();
+        return f != null && f.isDirectory();
     }
 
     @Override
     public boolean isFile() {
-        return this.file != null && this.file.isFile();
+        DocumentFile f = getFile();
+        return f != null && f.isFile();
     }
 
     @Override
     public long lastModified() {
-        return this.file != null ? this.file.lastModified() : -1;
+        DocumentFile f = getFile();
+        return f != null ? f.lastModified() : -1;
     }
 
     @Override
     public long length() {
-        return this.file != null ? this.file.length() : -1;
+        DocumentFile f = getFile();
+        return f != null ? f.length() : -1;
     }
 
     @Override
@@ -107,14 +115,16 @@ public final class SimpleDocumentFile implements FileApi {
 
     @Override
     public boolean delete() {
-        return this.file != null && this.file.delete();
+        DocumentFile f = getFile();
+        return f != null && f.delete();
     }
 
     @Override
     public String[] list() {
-        if (this.file != null){
+        DocumentFile f = getFile();
+        if (f != null){
             if (isDirectory()){
-                final DocumentFile[] documentFiles = this.file.listFiles();
+                final DocumentFile[] documentFiles = getFile().listFiles();
                 final int length = documentFiles.length;
                 final String[] fileList = new String[length];
                 for (int i = 0; i < length; i++) {
@@ -176,7 +186,7 @@ public final class SimpleDocumentFile implements FileApi {
                                 return false;
                             }
                             documentFile = createFile;
-                        }else {
+                        } else {
                             documentFile = findFile;
                         }
                     }
@@ -192,6 +202,7 @@ public final class SimpleDocumentFile implements FileApi {
 
     @Override
     public boolean renameTo(String dest) {
-        return this.file != null && this.file.renameTo(dest);
+        DocumentFile f = getFile();
+        return f != null && f.renameTo(dest);
     }
 }

@@ -82,8 +82,7 @@ public class DocumentUtil {
         if (!isPreviewPath(absolutePath)){
             throw new RuntimeException("The path entered does not belong to /Android/data or /Android/obb.");
         }
-        String str = DOCUMENT_ROOT + content;
-        absolutePath = absolutePath.substring(absolutePath.indexOf(str) + str.length());
+        absolutePath = absolutePath.substring(absolutePath.indexOf(DOCUMENT_ROOT + content) + DOCUMENT_ROOT.length() + content.length());
         return absolutePath.startsWith("/") ? absolutePath.substring(1) : absolutePath;
     }
 
@@ -174,7 +173,6 @@ public class DocumentUtil {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static Intent getUriOpenIntent(Uri uri){
-        System.out.println(uri);
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
                 | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
