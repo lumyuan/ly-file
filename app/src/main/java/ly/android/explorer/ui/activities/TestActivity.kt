@@ -26,17 +26,7 @@ class TestActivity : AppCompatActivity() {
 
         binding.mkdirs.setOnClickListener {
             val file = File(path)
-<<<<<<< HEAD
             println(file.mkdirs())
-=======
-            val parent = File(file.parent)
-            if (!parent.exists()) {
-                println(parent.mkdirs())
-            }
-            if (!file.exists()) {
-                file.createNewFile()
-            }
->>>>>>> parent of 455f8ae (0.1.1)
         }
     }
 
