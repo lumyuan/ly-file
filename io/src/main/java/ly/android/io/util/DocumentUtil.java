@@ -174,6 +174,7 @@ public class DocumentUtil {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static Intent getUriOpenIntent(Uri uri){
+        System.out.println(uri);
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
                 | Intent.FLAG_GRANT_WRITE_URI_PERMISSION

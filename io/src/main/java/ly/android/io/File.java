@@ -1,7 +1,6 @@
 package ly.android.io;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import ly.android.io.base.FileApi;
 import ly.android.io.base.FileList;
