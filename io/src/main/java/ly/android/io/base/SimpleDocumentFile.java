@@ -6,6 +6,7 @@ import androidx.documentfile.provider.DocumentFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 import ly.android.io.FileApplication;
 import ly.android.io.util.DocumentUtil;
@@ -159,6 +160,8 @@ public final class SimpleDocumentFile implements FileApi {
                                 return false;
                             }
                             documentFile = createFile;
+                        } else {
+                            documentFile = findFile;
                         }
                     }
                     return documentFile.exists();
@@ -184,6 +187,8 @@ public final class SimpleDocumentFile implements FileApi {
                                 return false;
                             }
                             documentFile = createFile;
+                        }else {
+                            documentFile = findFile;
                         }
                     }
                     return documentFile.exists();

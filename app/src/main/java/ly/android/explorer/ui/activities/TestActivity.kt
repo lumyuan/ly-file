@@ -25,10 +25,7 @@ class TestActivity : AppCompatActivity() {
 
         binding.mkdirs.setOnClickListener {
             val file = File(path)
-            val listFile = file.listFile()
-            listFile.onEach {
-                println(it.name)
-            }
+            println(file.mkdirs())
         }
     }
 

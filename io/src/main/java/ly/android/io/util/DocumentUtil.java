@@ -82,7 +82,8 @@ public class DocumentUtil {
         if (!isPreviewPath(absolutePath)){
             throw new RuntimeException("The path entered does not belong to /Android/data or /Android/obb.");
         }
-        absolutePath = absolutePath.substring(absolutePath.indexOf(DOCUMENT_ROOT + content) + DOCUMENT_ROOT.length() + content.length());
+        String str = DOCUMENT_ROOT + content;
+        absolutePath = absolutePath.substring(absolutePath.indexOf(str) + str.length());
         return absolutePath.startsWith("/") ? absolutePath.substring(1) : absolutePath;
     }
 
